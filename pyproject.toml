@@ -1,0 +1,95 @@
+[project]
+name = "nykka"
+version = "1.0.0"
+description = "Application to track price"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+keywords = ["nykka","tracker"]
+
+authors = [
+    {name = "Parna Das", email = "parnadas19962013@gmail.com" },
+    {name = "Sneha Chavan", email = "snehachavanbca07@gmail.com" },
+]
+
+maintainers = [
+    {name = "Parna Das", email = "parnadas19962013@gmail.com" },
+    {name = "Sneha Chavan", email = "snehachavanbca07@gmail.com" }
+]
+
+classifiers = [  
+    # Optional
+    # How mature is this project? Common values are
+    #   3 - Alpha
+    #   4 - Beta
+    #   5 - Production/Stable
+    "Development Status :: 4 - Beta",
+
+    # Indicate who your project is intended for
+    "Intended Audience :: Everyone",
+    "Topic :: Nykka :: Automated Price Tracker for specific product",
+
+    # Pick your license as you wish
+    #"License :: OSI Approved :: MIT License",
+
+    # Specify the Python versions you support here. In particular, ensure
+    # that you indicate you support Python 3. These classifiers are *not*
+    # checked by "pip install". See instead "python_requires" below.
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    # "Programming Language :: Python :: 3 :: Only",
+]
+
+dependencies = [
+    "requests",
+    "types-requests",
+    "pdoc3",
+    "build",
+    "setuptools",
+]
+
+[project.urls]
+"source" = "https://github.com/NerdDome/price-tracker.git"
+"documentation" = ""
+
+[project.optional-dependencies]
+dev = [
+    "black", 
+    "flake8", 
+    "mypy", 
+    "pylint",
+    "vulture",
+]
+test = [
+    "pytest",
+    "mypy",
+    "flake8",
+    "coverage",
+    "pytest-cov",
+    "pylint",
+    "black",
+    "vulture",
+]
+
+[project.scripts]
+price_tracker = "nykka:main"
+price-tracker-doc= "nykka:nykka_doc"
+
+[tool.pytest.ini_options]
+addopts = "-vv --cov --cov-report=html -p no:warnings" 
+filterwarnings = "ignore::DeprecationWarning"
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.vulture]
+exclude = ["*/__init__.py",]
+min_confidence = 70
+
+[tool.pylint]
+disable = ["line-too-long"]
+max-line-length = 200
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
