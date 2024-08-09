@@ -21,6 +21,7 @@ def validate_inputs(url: str, frequency: int, price: float, timeout: int) -> boo
     )
     if not status:
         raise KeyboardInterrupt
+    print("All inputs are valid")
     return status
 
 

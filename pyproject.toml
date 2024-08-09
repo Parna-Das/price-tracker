@@ -1,9 +1,9 @@
 [project]
-name = "nykka"
+name = "price-tracker"
 version = "1.0.0"
 description = "Application to track price"
 readme = "README.md"
-requires-python = ">=3.10,<3.13"
+requires-python = ">=3.9,<3.13"
 keywords = ["nykka","tracker"]
 
 authors = [
@@ -50,7 +50,6 @@ dependencies = [
 
 [project.urls]
 "source" = "https://github.com/NerdDome/price-tracker.git"
-"documentation" = ""
 
 [project.optional-dependencies]
 dev = [
@@ -72,8 +71,7 @@ test = [
 ]
 
 [project.scripts]
-price_tracker = "nykka:main"
-price-tracker-doc= "nykka:nykka_doc"
+price-tracker = "tracker:main"
 
 [tool.pytest.ini_options]
 addopts = "-vv --cov --cov-report=html -p no:warnings" 

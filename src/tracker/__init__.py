@@ -18,15 +18,21 @@ def main() -> None:
         description="Application to track price on web",
         add_help=True,
     )
-    parser.add_argument("-u", "--url", help="Provide the product URL")
+    parser.add_argument("-u", "--url", required=True, help="Provide the product URL")
     parser.add_argument(
-        "-p", "--target_price", help="Provide the desired product price"
+        "-p", "--target_price", required=True, help="Provide the desired product price"
     )
     parser.add_argument(
-        "-f", "--frequency", help="Provide the frequency to check the price"
+        "-f",
+        "--frequency",
+        required=True,
+        help="Provide the frequency to check the price",
     )
     parser.add_argument(
-        "-t", "--timeout", help="Maximum time to reach product to desired target"
+        "-t",
+        "--timeout",
+        required=True,
+        help="Maximum time to reach product to desired target",
     )
 
     # ! Step 1 : Consume inputs
@@ -48,8 +54,12 @@ def main() -> None:
         trigger_notification()
 
     except KeyboardInterrupt:
-        print("")
+        print("Exiting gracefully")
 
     finally:
         # ! Step 6 : Exit
         tear_down()
+
+
+if __name__ == "__main__":
+    main()
