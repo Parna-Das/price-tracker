@@ -1,5 +1,6 @@
 """"Module to house all the `validator` files"""
 
+import logging
 from validator.validator import (
     is_internet_available,
     is_timeout_valid,
@@ -20,9 +21,8 @@ def validate_inputs(url: str, frequency: int, price: float, timeout: int) -> boo
         ]
     )
     if not status:
+        print("Invalid inputs received. Please check and retry")
         raise KeyboardInterrupt
     print("All inputs are valid")
+    logging.info("All inputs are valid")
     return status
-
-
-# "call all validation function, return true if true sle keyboard interrupt"
