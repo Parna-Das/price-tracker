@@ -2,6 +2,7 @@
 
 import logging
 import os
+import subprocess
 
 from constants.constants import TEST_INTERNET_CONNECTION, URL_REGEX
 
@@ -39,6 +40,7 @@ def is_timeout_valid(timeout: int) -> bool:
 
 
 def is_internet_available() -> bool:
-    status = not bool(os.system(TEST_INTERNET_CONNECTION))
+    status = not bool(subprocess.run(TEST_INTERNET_CONNECTION, shell=True,check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode)
     logging.info("Internet is available") if status else logging.error("No internet connection")
+
     return status
