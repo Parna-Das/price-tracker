@@ -38,15 +38,20 @@ def start_tracking(url: str, target_price: float, frequency: int = 1, timeout: i
     timeout_at = start_time + timedelta(hours=timeout)
     logging.info("Initializing Tracking at time - '%s'", start_time)
     logging.info("Tracing Timeout shall be triggered at - '%s'", timeout_at)
-    while datetime.now() <= timeout_at:
-        _, current_price, *_ = resolve_url(url)
-        logging.info("Current Price retrieved as - '%s' against Target price - '%s'", current_price, target_price)
-        if current_price <= target_price:
-            logging.info("Target price reached. \n Current price is at %s", current_price)
-            print(f"Target price reached!!\nCurrent price is at {current_price}")
-            return True
-        logging.info("Waiting for - '%s' minutes", frequency)
-        time.sleep(frequency * 60)
+    try:
+        while datetime.now() <= timeout_at:
+            _, current_price, *_ = resolve_url(url)
+            logging.info("Current Price retrieved as - '%s' against Target price - '%s'", current_price, target_price)
+            if current_price <= target_price:
+                logging.info("Target price reached. \n Current price is at %s", current_price)
+                print(f"Target price reached!!\nCurrent price is at {current_price}")
+                return True
+            logging.info("Waiting for - '%s' minutes", frequency)
+            time.sleep(frequency * 60)
+    except KeyboardInterrupt:
+        choice = input("Keyboard interrupt detected!!! \nAre you sure you want to exit?\nPress 'Y' to exit, Press any key to continue : ")
+        if choice.lower()!="y":
+            start_tracking(url,target_price,frequency,timeout)
     logging.warning("Triggering timeout of - '%s' hours", timeout)
     return False
 

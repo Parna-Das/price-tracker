@@ -60,7 +60,6 @@ def main() -> None:
 
     except KeyboardInterrupt:
         logging.error("Keyboard interrupt detected. Exiting gracefully")
-        print("Exiting gracefully")
 
     finally:
         # ! Step 6 : Exit
