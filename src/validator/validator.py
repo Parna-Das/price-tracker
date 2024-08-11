@@ -41,5 +41,4 @@ def is_timeout_valid(timeout: int) -> bool:
 def is_internet_available() -> bool:
     status = not bool(run(TEST_INTERNET_CONNECTION, shell=True, check=True, stdout=DEVNULL, stderr=DEVNULL).returncode)
     logging.info("Internet is available") if status else logging.error("No internet connection")
-
     return status
