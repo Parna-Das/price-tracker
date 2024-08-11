@@ -5,12 +5,10 @@ import sys
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
-
 import requests
 import urllib3
 from audioplayer import AudioPlayer
 from bs4 import BeautifulSoup as bs
-
 from constants.constants import HEADERS
 from constants.filepaths import NOTIFICATION_FILE
 
@@ -18,6 +16,14 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def confirm_product(url: str) -> bool:
+    """Method to confirm product from the user
+
+    Args:
+        url (str): URL provided by the user
+
+    Returns:
+        bool: Status of the user input after confirming the product
+    """
     logging.info("Triggering User confirmation")
     name, current_price, availability = resolve_url(url)
     logging.info("Showing User Confirmation prompt")
@@ -33,6 +39,17 @@ def confirm_product(url: str) -> bool:
 
 
 def start_tracking(url: str, target_price: float, frequency: int = 1, timeout: int = 24) -> bool:
+    """Method to start tracking of the product
+
+    Args:
+        url (str): URL provided by the user
+        target_price (float): Targeted price given by user
+        frequency (int, optional): Frequency given by user
+        timeout (int, optional): Timeout given by user
+
+    Returns:
+        bool: Status of the tracking started
+    """
     print("Product Tracking In-Progress!!")
     start_time = datetime.now()
     timeout_at = start_time + timedelta(hours=timeout)
@@ -59,18 +76,36 @@ def start_tracking(url: str, target_price: float, frequency: int = 1, timeout: i
 
 
 def trigger_notification(file_path: Path = NOTIFICATION_FILE) -> None:
+    """Method to trigger notification to user
+
+    Args:
+        file_path (Path, optional): File path to pick up the audio file
+    """
     logging.info("Attempting to play notification sound using file - '%s'", file_path)
     AudioPlayer(str(file_path)).play(block=True)
     logging.info("Successfully notified user using file - '%s'", file_path)
 
 
 def tear_down():
+    """Method to exit from the application
+    """
     print("Exiting Gracefully...")
     print("Thanks for using `Price Tracker`")
     sys.exit(0)
 
 
 def resolve_url(url: str) -> tuple[str, float, str]:
+    """Method to process url and other user inputs
+
+    Args:
+        url (str): URL provided by the user
+
+    Raises:
+        KeyboardInterrupt: Interruption for unwanted events
+
+    Returns:
+        tuple[str, float, str]: Tuple consists of product name, price and availability
+    """
     response = requests.get(url=url, headers=HEADERS, timeout=10, verify=False)
     response = requests.get(url=url, headers=HEADERS, timeout=10, verify=False)
     if response.status_code == 200:
@@ -85,7 +120,3 @@ def resolve_url(url: str) -> tuple[str, float, str]:
         return (name, float(price.replace(",", "")), availability)
     logging.error("Failed to resolve URL with status code of - %s ", response.status_code)
     raise KeyboardInterrupt
-
-
-if __name__ == "__main__":
-    resolve_url("https://www.amazon.in/Samsung-Galaxy-Smartphone-Olive-Green/dp/B0C1Z8WTS6/ref=sr_1_1?_encoding=UTF8&s=electronics&sr=1")
