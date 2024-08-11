@@ -1,9 +1,9 @@
 """"File to house all the `validator` files"""
 
-import os
-import re
-from constants.constants import TEST_INTERNET_CONNECTION, URL_REGEX
 import logging
+import os
+
+from constants.constants import TEST_INTERNET_CONNECTION, URL_REGEX
 
 
 def is_url_valid(url: str) -> bool:
@@ -16,13 +16,12 @@ def is_url_valid(url: str) -> bool:
         bool: _description_
     """
     status = bool(URL_REGEX.match(url))
-    print(re.match(URL_REGEX, url))
-    logging.info("Valid url received - '%s'",url) if status else logging.error("Invalid url received - '%s'",url)
-    return True
+    logging.info("Valid url received - '%s'", url) if status else logging.error("Invalid url received - '%s'", url)
+    return status
 
 
 def is_frequency_valid(frequency: int) -> bool:
-    status = bool(frequency >= 1 and frequency <= 60)
+    status = bool(1 <= frequency <= 60)
     logging.info("Valid frequency received") if status else logging.error("Invalid frequency received")
     return status
 

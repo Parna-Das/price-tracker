@@ -14,19 +14,17 @@ from validator import validate_inputs
 
 
 def main() -> None:
+    """Method to run `Price Tracker Application`"""
     notify, confirm = False, False
     logging.basicConfig(filename=LOG_FILENAME, level=LOG_LEVEL, format=LOG_FORMAT)
 
-    """method to run `price-tracker` application"""
     parser = argparse.ArgumentParser(
         usage="price-tracker -u <product url> -p <target price> -f <frequency in minutes> -t<timeout window>",
         description="Application to track price on web",
         add_help=True,
     )
     parser.add_argument("-u", "--url", required=True, help="Provide the product URL")
-    parser.add_argument(
-        "-p", "--target_price", required=True, help="Provide the desired product price"
-    )
+    parser.add_argument("-p", "--target_price", required=True, help="Provide the desired product price")
     parser.add_argument(
         "-f",
         "--frequency",
@@ -45,9 +43,7 @@ def main() -> None:
 
     try:
         # ! Step 2 : validate inputs
-        validate_inputs(
-            f"{args.url}", int(args.frequency), float(args.target_price), int(args.timeout)
-        )
+        validate_inputs(f"{args.url}", int(args.frequency), float(args.target_price), int(args.timeout))
         logging.info("Inputs are in correct format")
 
         # ! Step 3 : Confirm and proceed
@@ -55,12 +51,12 @@ def main() -> None:
         logging.info("Product is correct")
 
         # ! Step 4 : Initializing tracking
-        if confirm :
+        if confirm:
             notify = start_tracking(url=f"{args.url}", target_price=float(args.target_price), frequency=int(args.frequency), timeout=int(args.timeout))
 
         # ! Step 5 : Notify the user
         if notify:
-            trigger_notification( )
+            trigger_notification()
 
     except KeyboardInterrupt:
         logging.error("Keyboard interrupt detected. Exiting gracefully")
@@ -69,8 +65,6 @@ def main() -> None:
     finally:
         # ! Step 6 : Exit
         tear_down()
-        
-
 
 
 if __name__ == "__main__":

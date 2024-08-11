@@ -3,4 +3,4 @@
 from pathlib import Path
 
 
-NOTIFICATION_FILE = Path("resources","alarm.wav")
+NOTIFICATION_FILE = Path("resources", "alarm.wav")

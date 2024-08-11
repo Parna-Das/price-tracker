@@ -4,7 +4,7 @@ version = "1.0.0"
 description = "Application to track price"
 readme = "README.md"
 requires-python = ">=3.9,<3.13"
-keywords = ["nykka","tracker"]
+keywords = ["amazon","tracker"]
 
 authors = [
     {name = "Parna Das", email = "parnadas19962013@gmail.com" },
@@ -46,6 +46,8 @@ dependencies = [
     "pdoc3",
     "build",
     "setuptools",
+    "audioplayer",
+    "beautifulsoup4"
 ]
 
 [project.urls]
@@ -85,7 +87,7 @@ exclude = ["*/__init__.py",]
 min_confidence = 70
 
 [tool.pylint]
-disable = ["line-too-long"]
+disable = ["line-too-long", "expression-not-assigned", "import-self"]
 max-line-length = 200
 
 [build-system]
