@@ -1,8 +1,7 @@
 """"File to house all the `validator` files"""
 
 import logging
-import os
-import subprocess
+from subprocess import run, DEVNULL
 
 from constants.constants import TEST_INTERNET_CONNECTION, URL_REGEX
 
@@ -40,7 +39,7 @@ def is_timeout_valid(timeout: int) -> bool:
 
 
 def is_internet_available() -> bool:
-    status = not bool(subprocess.run(TEST_INTERNET_CONNECTION, shell=True,check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode)
+    status = not bool(run(TEST_INTERNET_CONNECTION, shell=True, check=True, stdout=DEVNULL, stderr=DEVNULL).returncode)
     logging.info("Internet is available") if status else logging.error("No internet connection")
 
     return status
