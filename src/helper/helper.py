@@ -57,6 +57,7 @@ def tear_down():
 
 def resolve_url(url: str) -> tuple[str, float, str]:
     response = requests.get(url=url, headers=HEADERS, timeout=10, verify=False)
+    response = requests.get(url=url, headers=HEADERS, timeout=10, verify=False)
     if response.status_code == 200:
         logging.info("URL - '%s' resolved with status code 200", url)
         html_content = bs(response.content, "html.parser")

@@ -16,7 +16,7 @@ def is_url_valid(url: str) -> bool:
         bool: _description_
     """
     status = bool(URL_REGEX.match(url))
-    logging.info("Valid url received - '%s'", url) if status else logging.error("Invalid url received - '%s'", url)
+    logging.info("Valid url received - '%s'",url) if status else logging.error("Invalid url received - '%s'",url)
     return status
 
 
@@ -33,7 +33,7 @@ def is_target_price_valid(price: float) -> bool:
 
 
 def is_timeout_valid(timeout: int) -> bool:
-    status = bool(timeout <= 24)
+    status = bool(0 <timeout <= 24)
     logging.info("Valid timeout received") if status else logging.error("Invalid timeout received")
     return status
 
