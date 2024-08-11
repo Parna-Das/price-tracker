@@ -51,7 +51,7 @@ def start_tracking(url: str, target_price: float, frequency: int = 1, timeout: i
     except KeyboardInterrupt:
         choice = input("Keyboard interrupt detected!!! \nAre you sure you want to exit?\nPress 'Y' to exit, Press any key to continue : ")
         if choice.lower()!="y":
-            start_tracking(url,target_price,frequency,timeout)
+           return start_tracking(url,target_price,frequency,timeout)
     logging.warning("Triggering timeout of - '%s' hours", timeout)
     return False
 
