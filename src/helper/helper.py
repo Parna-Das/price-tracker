@@ -23,11 +23,17 @@ def confirm_product(url: str) -> bool:
     logging.info("Showing User Confirmation prompt")
     choice = input(f"Confirm the following product details\nProduct Name - {name}\nProduct Price - {current_price}\nProduct Status - {availability}\nPress Y to continue : ")
     status = bool(choice.lower() == "y")
-    logging.info("User opted to proceed") if status else logging.error("User requested abort")
+    if status:
+        logging.info("User opted to proceed")
+    else:
+        logging.error("User requested abort")
+        print("User confirmation - Declined")
+        print("Please Check your product URL and Try Again")
     return status
 
 
 def start_tracking(url: str, target_price: float, frequency: int = 1, timeout: int = 24) -> bool:
+    print("Product Tracking In-Progress!!")
     start_time = datetime.now()
     timeout_at = start_time + timedelta(hours=timeout)
     logging.info("Initializing Tracking at time - '%s'", start_time)
@@ -52,6 +58,8 @@ def trigger_notification(file_path: Path = NOTIFICATION_FILE) -> None:
 
 
 def tear_down():
+    print("Exiting Gracefully...")
+    print("Thanks for using `Price Tracker`")
     sys.exit(0)
 
 

@@ -1,19 +1,10 @@
 """File to house all the `Constants`"""
 
-from datetime import datetime
-import re
 import logging
+import re
+from datetime import datetime
 from pathlib import Path
 
-# URL_REGEX = re.compile(
-#     r"^(https?|ftp):\/\/"  # protocol
-#     r"(((([a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9])|([a-zA-Z0-9]+))\.)*[a-zA-Z]{2,})"  # domain name
-#     r"(:\d+)?"  # optional port
-#     r"(\/[a-zA-Z0-9._\/%-]*)?"  # path
-#     r"(\?[a-zA-Z0-9&%=._-]*)?"  # query string
-#     r"(#.*)?$",  # fragment
-#     re.IGNORECASE,
-# )
 URL_REGEX = re.compile(r"^(http(s):\/\/.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)$")
 
 TEST_INTERNET_CONNECTION = "ping -n 1 www.google.com"
