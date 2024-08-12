@@ -2,7 +2,6 @@
 
 import logging
 from subprocess import run, DEVNULL
-
 from constants.constants import TEST_INTERNET_CONNECTION, URL_REGEX
 
 
