@@ -22,7 +22,7 @@ def confirm_product(url: str) -> bool:
         url (str): URL provided by the user
 
     Returns:
-        bool: Status of the user input after confirming the product
+        bool: True or False based on action
     """
     logging.info("Triggering User confirmation")
     name, current_price, availability = resolve_url(url)
@@ -48,7 +48,7 @@ def start_tracking(url: str, target_price: float, frequency: int = 1, timeout: i
         timeout (int, optional): Timeout given by user
 
     Returns:
-        bool: Status of the tracking started
+        bool: True or False based on action
     """
     print("Product Tracking In-Progress!!")
     start_time = datetime.now()
@@ -106,7 +106,6 @@ def resolve_url(url: str) -> tuple[str, float, str]:
     Returns:
         tuple[str, float, str]: Tuple consists of product name, price and availability
     """
-    response = requests.get(url=url, headers=HEADERS, timeout=10, verify=False)
     response = requests.get(url=url, headers=HEADERS, timeout=10, verify=False)
     if response.status_code == 200:
         logging.info("URL - '%s' resolved with status code 200", url)

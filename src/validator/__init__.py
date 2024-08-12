@@ -23,7 +23,7 @@ def validate_inputs(url: str, frequency: int, price: float, timeout: int) -> boo
         KeyboardInterrupt: Key board interruption
 
     Returns:
-        bool: Return boolean value
+        bool: True or False based on action
     """
     status = all(
         [
