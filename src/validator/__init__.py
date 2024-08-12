@@ -11,6 +11,20 @@ from validator.validator import (
 
 
 def validate_inputs(url: str, frequency: int, price: float, timeout: int) -> bool:
+    """Main validation function to validate all the inputs
+
+    Args:
+        url (str): URL provided by user
+        frequency (int): Frequency provided by user
+        price (float): Targeted price provided by user
+        timeout (int): Timeout provided by user
+
+    Raises:
+        KeyboardInterrupt: Key board interruption
+
+    Returns:
+        bool: Return boolean value
+    """
     status = all(
         [
             is_url_valid(url),
