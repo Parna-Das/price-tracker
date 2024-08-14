@@ -39,22 +39,22 @@ jobs:
       run: |
         vulture src tests
   
-docs:
-  runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v4
-
-  - name: Set up Python 3.10
-    uses: actions/setup-python@v3
-    with:
-      python-version: "3.10"
-
-  - name: Generate documentation 📚
-    run: |
-      tracker-doc
-
-  - name: Upload documentation as artifact
-    uses: actions/upload-artifact@v3
-    with:
-      name: documentation
-      path: docs/
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+  
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+  
+    - name: Generate documentation 📚
+      run: |
+        tracker-doc
+  
+    - name: Upload documentation as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: documentation
+        path: docs/
