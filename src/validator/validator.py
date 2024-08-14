@@ -12,7 +12,7 @@ def is_url_valid(url: str) -> bool:
         url (str): provided URL
 
     Returns:
-        bool: Status of the input validation
+        bool: True or False based on action
     """
     status = bool(URL_REGEX.match(url))
     logging.info("Valid url received - '%s'", url) if status else logging.error("Invalid url received - '%s'", url)
@@ -26,7 +26,7 @@ def is_frequency_valid(frequency: int) -> bool:
         frequency (int): Frequency given by user
 
     Returns:
-        bool: Status of the input validation
+        bool: True or False based on action
     """
     status = bool(1 <= frequency <= 60)
     logging.info("Valid frequency received") if status else logging.error("Invalid frequency received")
@@ -40,7 +40,7 @@ def is_target_price_valid(price: float) -> bool:
         price (float): Target price given by user
 
     Returns:
-        bool: Status of the input validation
+        bool: True or False based on action
     """
     status = bool(price > 0)
     logging.info("Valid price received") if status else logging.error("Invalid price received")
@@ -54,7 +54,7 @@ def is_timeout_valid(timeout: int) -> bool:
         timeout (int): Timeout given by user
 
     Returns:
-        bool: Status of the input validation
+        bool: True or False based on action
     """
     status = bool(0 < timeout <= 24)
     logging.info("Valid timeout received") if status else logging.error("Invalid timeout received")
@@ -65,7 +65,7 @@ def is_internet_available() -> bool:
     """Method to check internet connection
 
     Returns:
-        bool: Status of the internet validity
+        bool: True or False based on action
     """
     status = not bool(run(TEST_INTERNET_CONNECTION, shell=True, check=True, stdout=DEVNULL, stderr=DEVNULL).returncode)
     logging.info("Internet is available") if status else logging.error("No internet connection")

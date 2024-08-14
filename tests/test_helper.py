@@ -1,8 +1,6 @@
 """module to import"""
-import unittest
-import pytest
-from helper import resolve_url
 
+import unittest
 
 # Test case for resolve_url
 # def test_resolve_url_success():
@@ -19,7 +17,7 @@ from helper import resolve_url
 #         result = helper
 
 #         # Assertions
-#         mock_get.assert_called_once_with(url=url, verify=True, timeout=30)  
+#         mock_get.assert_called_once_with(url=url, verify=True, timeout=30)
 #         assert result == expected_output
 
 
@@ -42,7 +40,7 @@ from helper import resolve_url
 #         mock_get.assert_called_once_with(url=url, verify=True, timeout=30)
 #         assert result == expected_output
 
-#class TestIs
+# class TestIs
 
 if __name__ == "__main__":
     unittest.main()
