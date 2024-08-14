@@ -74,6 +74,7 @@ test = [
 
 [project.scripts]
 price-tracker = "tracker:main"
+tracker-doc = "tracker:tracker_doc"
 
 [tool.pytest.ini_options]
 addopts = "-vv --cov --cov-report=html -p no:warnings" 

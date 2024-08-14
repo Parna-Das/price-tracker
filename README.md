@@ -22,10 +22,14 @@ Activate the Virtual Environment.
 Install the Price Tracker app
 
 ```bash
-  pip install price-tracker
+  pip install .
 ```
 
+Install the Extras
 
+```bash
+  pip install -e ".[dev,test]"
+```
 
 
 ## Features

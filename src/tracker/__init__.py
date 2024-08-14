@@ -2,8 +2,9 @@
 
 import argparse
 import logging
+import os
 
-from constants.constants import LOG_FILENAME, LOG_FORMAT, LOG_LEVEL
+from constants.constants import GENERATE_DOCUMENTATION, LOG_FILENAME, LOG_FORMAT, LOG_LEVEL
 from helper.helper import (
     confirm_product,
     start_tracking,
@@ -64,6 +65,12 @@ def main() -> None:
     finally:
         # ! Step 6 : Exit
         tear_down()
+
+
+def tracker_doc() -> None:
+    """Function to programmatically generate documentation for project `Price Tracker`"""
+    logging.info("Generating pdoc document.")
+    os.system(GENERATE_DOCUMENTATION)
 
 
 if __name__ == "__main__":
