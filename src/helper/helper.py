@@ -87,8 +87,7 @@ def trigger_notification(file_path: Path = NOTIFICATION_FILE) -> None:
 
 
 def tear_down():
-    """Method to exit from the application
-    """
+    """Method to exit from the application"""
     print("Exiting Gracefully...")
     print("Thanks for using `Price Tracker`")
     sys.exit(0)
