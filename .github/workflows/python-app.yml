@@ -41,6 +41,12 @@ jobs:
     - name:  Execute Unit test - 🧪 Pytest
       run : |
         pytest
+
+    - name: Upload Code Coverage as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Coverage Artifact
+        path: htmlcov/
         
   
   # docs:
@@ -90,3 +96,5 @@ jobs:
       with:
         name: Distribution
         path: dist/
+    
+        
