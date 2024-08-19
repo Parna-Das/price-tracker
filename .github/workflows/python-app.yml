@@ -38,6 +38,10 @@ jobs:
     - name:  Execute SCA - 🦅 vulture
       run: |
         vulture src tests
+    - name:  Execute Unit test - 🧪 Pytest
+      run : |
+        pytest
+        
   
   # docs:
   #   runs-on: ubuntu-latest
