@@ -2,7 +2,7 @@
 
 import unittest
 from validator import is_url_valid, is_frequency_valid, is_target_price_valid, is_timeout_valid, is_internet_available
-
+from validator import validate_inputs
 
 class TestIsUrlValid(unittest.TestCase):
     """Unit test class to verify if URL is valid
@@ -99,3 +99,22 @@ class TestInternetAvailibility(unittest.TestCase):
         self.assertTrue(actual)
 
     # Negative scenario to be written
+
+class TestValidateInputs(unittest.TestCase):
+    """Unit test class to verify if inputs are valid.
+
+        Args:
+            unittest (_type_): unit test
+        """
+
+    def test_check_valid_inputs_with_invalid_inputs(self):
+        """Unit test class to verify invalid inputs"""
+        with self.assertRaises(KeyboardInterrupt):
+            validate_inputs(url=r':/amazon.in/', frequency=0, price=1049, timeout=10)
+
+    
+    
+    def test_check_valid_inuts_with_valid_inputs(self):
+        """Unit test class to verify valid inputs"""
+        actual = validate_inputs(url=r'https://www.amazon.in/', frequency=10, price=1049, timeout=10)
+        self.assertTrue(actual)
