@@ -38,30 +38,40 @@ jobs:
     - name:  Execute SCA - 🦅 vulture
       run: |
         vulture src tests
-  
-  docs:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
+    - name:  Execute Unit test - 🧪 Pytest
+      run : |
+        pytest
 
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -e .
-
-    - name: Generate documentation 📚
-      run: |
-        tracker-doc
-
-    - name: Upload documentation as artifact
+    - name: Upload Code Coverage as artifact
       uses: actions/upload-artifact@v3
       with:
-        name: documentation
-        path: docs/
+        name: Coverage Artifact
+        path: htmlcov/
+        
+  
+  # docs:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v4
+
+  #   - name: Set up Python 3.10
+  #     uses: actions/setup-python@v3
+  #     with:
+  #       python-version: "3.10"
+  #   - name: Install dependencies
+  #     run: |
+  #       python -m pip install --upgrade pip
+  #       pip install -e .
+
+  #   - name: Generate documentation 📚
+  #     run: |
+  #       tracker-doc
+
+  #   - name: Upload documentation as artifact
+  #     uses: actions/upload-artifact@v3
+  #     with:
+  #       name: documentation
+  #       path: docs/
 
   build:
     runs-on: ubuntu-latest
@@ -86,3 +96,5 @@ jobs:
       with:
         name: Distribution
         path: dist/
+    
+        
